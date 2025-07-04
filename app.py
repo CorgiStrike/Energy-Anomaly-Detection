@@ -71,7 +71,7 @@ if uploaded:
             if not anomalies.empty:
                 alerts = anomalies[["date", "generated_power_kw"]]
                 alerts.to_csv("alerts_today.csv", index=False)
-                st.error("Anomalies detected and saved. Check summary for details.")
+                st.warning("Anomalies detected and saved. Check summary for details.")
             else:
                 st.success("No anomalies detected. All systems normal.")
 
