@@ -9,6 +9,18 @@ from model import detect_anomalies, generate_summary
 st.set_page_config(layout="wide")
 st.title("Energy Anomaly Detection")
 
+st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-color: {"#121212"};
+        color: {"#E0E0E0"};
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 uploaded = st.file_uploader("Upload your energy CSV file:", type=["csv"])
 
 if uploaded:
@@ -34,18 +46,28 @@ if uploaded:
                 y=df["generated_power_kw"],
                 mode='lines',
                 name='Generated Power (kW)',
-                line=dict(color='blue')
+                line=dict(color='#1E3A8A')
             ))
 
-            # Scatter for anomalies
+            # Scatter for anomalies by severity
             anomalies = df[df["anomaly"] == True]
-            fig.add_trace(go.Scatter(
-                x=anomalies["date"],
-                y=anomalies["generated_power_kw"],
-                mode='markers',
-                name='Anomaly',
-                marker=dict(color='red', size=6, symbol='x')
-            ))
+
+            severity_colors = {
+                'Small': '#FFD600',
+                'Medium': '#FF9800',
+                'Major': '#B71C1C'
+            }
+
+            for severity, color in severity_colors.items():
+                subset = anomalies[anomalies["severity"] == severity]
+                if not subset.empty:
+                    fig.add_trace(go.Scatter(
+                        x=subset["date"],
+                        y=subset["generated_power_kw"],
+                        mode='markers',
+                        name=f'Anomaly ({severity})',
+                        marker=dict(color=color, size=8, symbol='x')
+                    ))
 
             # Customize layout
             fig.update_layout(
@@ -69,7 +91,7 @@ if uploaded:
                 st.markdown(summary)
 
             if not anomalies.empty:
-                alerts = anomalies[["date", "generated_power_kw"]]
+                alerts = anomalies[["date", "generated_power_kw", "severity"]]
                 alerts.to_csv("alerts_today.csv", index=False)
                 st.warning("Anomalies detected and saved. Check summary for details.")
             else:
