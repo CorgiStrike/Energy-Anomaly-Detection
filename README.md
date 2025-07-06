@@ -52,8 +52,8 @@ date,generated_power_kw
 
 1. **Clone the repo**
     ```bash
-    git clone https://github.com/CorgiStrike/EnergyAnomalyDetection.git
-    cd EnergyAnomalyDetection
+    git clone https://github.com/CorgiStrike/Energy-Anomaly-Detection.git
+    cd Energy-Anomaly-Detection
     ```
 
 2. **Set up a virtual environment**
