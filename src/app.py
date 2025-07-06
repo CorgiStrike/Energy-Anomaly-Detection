@@ -77,9 +77,9 @@ def index():
                         height=400,
                         margin=dict(t=30, b=30, l=30, r=30),
                         showlegend=True,
-                        plot_bgcolor='#121212',   # dark background inside plot
-                        paper_bgcolor='#121212',  # dark background outside plot
-                        font=dict(color='#E0E0E0'),  # light text for titles, ticks, legend
+                        plot_bgcolor='#121212',
+                        paper_bgcolor='#121212',
+                        font=dict(color='#E0E0E0'), 
                         xaxis=dict(
                             gridcolor='#333333',
                             zerolinecolor='#444444',
