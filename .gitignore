@@ -2,3 +2,4 @@ venv/
 alerts_today.csv
 cleaned_data.csv
 blank.csv
+.env

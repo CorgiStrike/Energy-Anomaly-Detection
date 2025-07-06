@@ -2,9 +2,13 @@ from flask import Flask, render_template, request, flash
 import pandas as pd
 import plotly.graph_objs as go
 from model import detect_anomalies, generate_summary
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'secret'  # For flash messages
+app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24))
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -19,11 +23,20 @@ def index():
             uploaded_filename = file.filename
             try:
                 df = pd.read_csv(file)
-
+                
+                if 'date' in df.columns:
+                    try:
+                        df['date'] = pd.to_datetime(df['date'])
+                    except Exception as e:
+                        flash(f"Date column exists but could not be parsed: {e}", 'error')
+                        df['date'] = pd.date_range(start='2024-01-01', periods=len(df), freq='h')
+                else:
+                    flash(f"Uploaded file is missing the required 'date' column.", 'error')
+                    df['date'] = pd.date_range(start='2024-01-01', periods=len(df), freq='h')
+                
                 if 'generated_power_kw' not in df.columns:
                     flash("Uploaded file is missing the required 'generated_power_kw' column.", 'error')
                 else:
-                    df['date'] = pd.date_range(start='2024-01-01', periods=len(df), freq='h')
 
                     df = detect_anomalies(df)
                     summary = generate_summary(df)
@@ -85,7 +98,7 @@ def index():
 
                     if not anomalies.empty:
                         alerts = anomalies[["date", "generated_power_kw", "severity"]]
-                        alerts.to_csv("alerts_today.csv", index=False)
+                        alerts.to_csv(os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), 'alerts_today.csv'), index=False)
                         flash("Anomalies detected and saved. Check summary for details.", "warning")
                     else:
                         flash("No anomalies detected. All systems normal.", "success")

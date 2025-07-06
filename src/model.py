@@ -15,7 +15,7 @@ def detect_anomalies(df):
 def generate_summary(df):
     anomalies = df[df["anomaly"] == True]
 
-    if anomalies.empty:
+    if anomalies.empty: 
         return (
             "Total Anomalies: <strong>0</strong><br>"
             "&nbsp;&nbsp;Small Anomalies: <strong>0</strong><br>"
