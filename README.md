@@ -79,10 +79,21 @@ date,generated_power_kw
    ```
 Then, visit http://localhost:5000 in your browser.
 
+## Creating a .env file
+1. In your project root, create your .env file
+   ```bash
+   touch .env
+   ```
+2. Open the .env file in your editor and add your variables in this format:
+   ```env
+   SECRET_KEY=your-super-secret-key
+   OPENAI_API_KEY=your-openai-api-key (not currrently used)
+   ```
+
 ## Future Plans
 - OpenAI integration for detailed summaries
 - Google Drive Syncing for automatic Zapier alerts
 - App expansion to allow for multiple saved CSV files
 
 ## License
-This project is licensed under the terms of the MIT license. See the LICENSE file for more details.
+This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE.md) file for details.
