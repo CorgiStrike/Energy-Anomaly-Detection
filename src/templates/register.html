@@ -13,16 +13,17 @@
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <div class="mb-2">
-                {% for category, message in messages %}
-                    <div class="alert 
-                        {% if category == 'error' %}alert-danger
-                        {% elif category == 'warning' %}alert-warning
-                        {% elif category == 'success' %}alert-success
-                        {% else %}alert-info{% endif %}" role="alert">
-                    {{ message }}
-                    </div>
-                {% endfor %}
+                <div class="alert alert-body">
+                        {% for category, message in messages %}
+                            {% if category == 'Auth Error' or category == 'Auth Success' %}
+                                <div class="alert
+                                    {% if category == 'Auth Success' %}alert-success
+                                    {% elif category == 'Auth Error' %}alert-danger
+                                    {% endif %}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                 </div>
             {% endif %}
         {% endwith %}

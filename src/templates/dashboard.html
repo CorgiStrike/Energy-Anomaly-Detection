@@ -45,6 +45,8 @@
                                     {% elif category == 'warning' %}alert-warning-text
                                     {% elif category == 'error' %}alert-error-text
                                     {% elif category == 'success' %}alert-success-text
+                                    {% elif category == 'Auth Success' %}alert-success-text
+                                    {% elif category == 'Auth Error' %}alert-error-text
                                     {% else %}text-white{% endif %}">
                             <strong>{{ category|capitalize }}:</strong> {{ message }}
                         </li>

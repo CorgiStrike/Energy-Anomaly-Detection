@@ -130,14 +130,14 @@ def register():
         password = form.password.data
 
         if User.query.filter_by(email=email).first():
-            flash("Email already exists", "error")
+            flash("Email already exists", "Auth Error")
             return redirect(url_for('register'))
 
         new_user = User(email=email)
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
-        flash("Account created", "success")
+        flash("Account created", "Auth Success")
         return redirect(url_for('login'))
 
     return render_template("register.html", form=form)
@@ -152,10 +152,10 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user and user.check_password(password):
             login_user(user)
-            flash("Logged in successfully", "success")
-            return redirect(url_for('dashboard'))
+            flash("Logged in successfully", "Auth Success")
+            return redirect(url_for('home'))
         else:
-            flash("Invalid credentials", "error")
+            flash("Invalid credentials", "Auth Error")
 
     return render_template("login.html", form=form)
 

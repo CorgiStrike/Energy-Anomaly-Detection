@@ -10,7 +10,7 @@ This project takes energy data from CSV files, detects anomalies based on power 
 - Generate a visual graph with marked anomaly points
 - Display a summary report with counts and severity breakdowns
 - Save detected anomalies to a CSV file (`alerts_today.csv`)
-- Support for multiple CSV files as seperate workflows
+- Support for multiple CSV files as separate workflows
 - Account creation with saved CSV files
 
 
@@ -114,6 +114,9 @@ Then, visit http://localhost:5000 in your browser.
     Database initialized.
     ```
 
+## Video Walkthrough
+
+Watch the video walkthrough [here](https://www.youtube.com/watch?v=o7LRJnmUD64)
 ## Future Plans
 - OpenAI integration for detailed summaries
 - Google Drive Syncing for automatic Zapier alerts
