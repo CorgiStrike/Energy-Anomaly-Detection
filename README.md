@@ -74,10 +74,10 @@ date,generated_power_kw
     pip install -r requirements.txt
     ```
     
-4. **Create a**`.env` **file**
+4. **Create a**`.env` **file**  
    See below.
 
-5. **Create a database file**
+5. **Create a database file**  
    See below.
 
 6. **Run the app**
