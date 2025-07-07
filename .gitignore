@@ -6,3 +6,4 @@ uploads/
 alerts_today.csv
 configs.db
 .env
+.DS_Store
