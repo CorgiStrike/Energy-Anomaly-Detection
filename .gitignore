@@ -1,6 +1,7 @@
 venv/
 __pycache__/
 instance/
+uploads/
 *.py[cod]
 alerts_today.csv
 configs.db
