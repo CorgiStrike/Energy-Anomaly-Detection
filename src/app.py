@@ -3,10 +3,12 @@ import plotly.graph_objs as go
 import os
 import json
 from flask import Flask, render_template, request, flash, redirect, url_for, get_flashed_messages
-from model import detect_anomalies, generate_summary, Workflow
+from flask_login import login_manager, login_user, login_required, logout_user, current_user
+from forms import LoginForm, RegisterForm
+from model import Workflow, User
 from utils import process_CSV
 from dotenv import load_dotenv
-from extensions import db
+from extensions import db, login_manager
 from werkzeug.utils import secure_filename
 from plotly.utils import PlotlyJSONEncoder
 
@@ -19,12 +21,17 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///configs.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+login_manager.login_view = 'login'
+login_manager.init_app(app)
+
 @app.route('/')
+@login_required
 def home():
-    workflows = Workflow.query.order_by(Workflow.created_at.desc()).all()
+    workflows = Workflow.query.filter_by(user_id=current_user.id).order_by(Workflow.created_at.desc()).all()
     return render_template("home.html", workflows=workflows)
 
 @app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
     workflow_id = request.args.get("id")
     chart = None
@@ -52,6 +59,7 @@ def dashboard():
                 summary, chart, anomalies, fig, alerts = process_CSV(save_path)
 
                 workflow = Workflow(
+                    user_id=current_user.id if current_user.is_authenticated else None,
                     name=uploaded_filename,
                     filename=uploaded_filename,
                     summary_json=json.dumps(summary) if summary else None,
@@ -109,6 +117,54 @@ def rename_workflow(workflow_id):
         return '', 204
     else:
         return 'Name is required', 400
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+
+        if User.query.filter_by(email=email).first():
+            flash("Email already exists", "error")
+            return redirect(url_for('register'))
+
+        new_user = User(email=email)
+        new_user.set_password(password)
+        db.session.add(new_user)
+        db.session.commit()
+        flash("Account created", "success")
+        return redirect(url_for('login'))
+
+    return render_template("register.html", form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+
+        user = User.query.filter_by(email=email).first()
+        if user and user.check_password(password):
+            login_user(user)
+            flash("Logged in successfully", "success")
+            return redirect(url_for('dashboard'))
+        else:
+            flash("Invalid credentials", "error")
+
+    return render_template("login.html", form=form)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash("Logged out", "info")
+    return redirect(url_for('login'))
 
 
 

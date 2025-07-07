@@ -11,6 +11,7 @@ This project takes energy data from CSV files, detects anomalies based on power 
 - Display a summary report with counts and severity breakdowns
 - Save detected anomalies to a CSV file (`alerts_today.csv`)
 - Support for multiple CSV files as seperate workflows
+- Account creation with saved CSV files
 
 
 ## Project Structure
@@ -20,13 +21,16 @@ your-project/
 |
 ├── src/ # Core application code
 │ ├── app.py # Flask app and anomaly logic
-│ ├── extensions.py # Database initialization for code
+│ ├── extensions.py # Database and login initialization for code
+│ ├── forms.py # Handles login + register
 │ ├── init_db.py # Database initialization for repo
 │ ├── model.py # Anomaly detection + summary generation
 │ ├── utils.py # Helpful functions for processing
 │ ├── templates/
 │ │ ├── home.html # Home page HTML template
 │ │ ├── dashboard.html # Dashboard page HTML template
+│ │ ├── login.html # Login page HTML template
+│ │ ├── register.html # Register page HTML template
 │ │ └── sidebar.html # Partial HTML for sidebar shared across pages
 │ └── static/ # CSS, JS, images (e.g., sidebar.js)
 │
@@ -113,6 +117,7 @@ Then, visit http://localhost:5000 in your browser.
 ## Future Plans
 - OpenAI integration for detailed summaries
 - Google Drive Syncing for automatic Zapier alerts
+- Dropdown on dashboard to allow users to pick what statistic they want for their graph
 
 ## License
 This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for details.

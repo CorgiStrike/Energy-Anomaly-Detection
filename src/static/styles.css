@@ -148,6 +148,9 @@ input[type="file"] {
 }
 .sidebar.expanded .nav-links {
     display: flex;
+    flex-direction: column;
+    height: 88%;
+    justify-content: space-between;
 }
 .sidebar .nav-links a {
     color: #E0E0E0;
@@ -217,4 +220,24 @@ input[type="file"] {
 }
 .load-button {
     background-color: #141414;
+}
+.password-toggle {
+  position: relative;
+}
+.password-toggle input {
+    padding-right: 2.5rem;
+}
+.password-toggle .toggle-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  bottom: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #141414;
+  font-size: 1.2rem;  
+  user-select: none;
+}
+.password-toggle .toggle-icon:hover {
+  color: #1b4dd7;
 }
