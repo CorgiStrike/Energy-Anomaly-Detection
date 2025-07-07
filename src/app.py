@@ -64,8 +64,10 @@ def dashboard():
                 
             except ValueError as e:
                 alerts.append({"type": 'error', "message": f"Error processing file: {str(e)}"})
+                os.remove(save_path)
             except pd.errors.EmptyDataError:
                 alerts.append({"type": 'error', "message": "Uploaded file is completely empty. Please upload a valid CSV file."})
+                os.remove(save_path)
         else:
             alerts.append({"type": 'error', "message": "Please upload a valid CSV file."})
 
