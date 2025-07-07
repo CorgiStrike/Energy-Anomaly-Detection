@@ -106,9 +106,9 @@ Then, visit http://localhost:5000 in your browser.
    ```
 
 2. Wait for conformation that the database was created
-```
-Database initialized.
-```
+    ```
+    Database initialized.
+    ```
 
 ## Future Plans
 - OpenAI integration for detailed summaries
