@@ -1,5 +1,7 @@
 venv/
 __pycache__/
+instance/
 *.py[cod]
 alerts_today.csv
+configs.db
 .env

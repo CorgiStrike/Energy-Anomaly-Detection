@@ -1,4 +1,17 @@
 from sklearn.ensemble import IsolationForest
+from extensions import db
+from datetime import datetime
+from sqlalchemy.sql import func
+
+class Workflow(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)      
+    filename = db.Column(db.String(120), nullable=False)    
+    summary_json = db.Column(db.Text)
+    chart_json = db.Column(db.Text)
+    alerts_json = db.Column(db.Text)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
 
 def detect_anomalies(df):
     model = IsolationForest(contamination=0.05, random_state=42)

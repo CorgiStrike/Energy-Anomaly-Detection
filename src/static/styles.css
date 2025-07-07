@@ -1,0 +1,220 @@
+body {
+    background-color: #0f0f0f;
+    color: #E0E0E0;
+    padding: 2rem;
+    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', sans-serif;
+    outline: none;
+    box-shadow: none;
+}
+.container {
+    max-width: 1200px;
+    position: relative;
+}
+.chart-container {
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.summary-container {
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+    height: 100%;
+}
+.workflow-container{
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+    height: 100%;
+}
+.form-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.custom-file-btn {
+    background-color: #1e1e1e;
+    color: #E0E0E0;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+.custom-file-btn:hover {
+    background-color: #1b4dd7;
+}
+input[type="file"] {
+    display: none;
+}
+.alert-body {
+    background-color: #1e1e1e !important;
+    margin-top: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none !important;
+    box-shadow: none !important;
+}
+.alert-body ul {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+.alert-info-text {
+    color: #00ffff;
+}
+.alert-warning-text {
+    color: #ffd600;
+}
+.alert-error-text {
+    color: #ff4c4c;
+}
+.alert-success-text {
+    color: #50fa7b;
+}
+.header-container {
+    display: flex;
+    align-items: center; 
+    gap: 1rem; 
+    margin-bottom: 1.5rem; 
+}
+.header-logo {
+    width: 60px;       
+    height: 60px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+#combinedAlert {
+    background-color: #1e1e1e !important;
+    color: #E0E0E0;
+    border: none !important;
+    box-shadow: none !important;
+    padding-right: 3rem;
+}
+#toggleAlertsBtn {
+    background-color: #1e1e1e;
+    font-weight: bold;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1050;
+}
+#toggleAlertsBtn:hover {
+    background-color: #1b4dd7;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow: hidden;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    z-index: 1000;
+    padding-top: 1rem;
+    flex-direction: column;
+    display: flex;
+}
+.sidebar.collapsed {
+    width: 60px;
+}
+.sidebar.expanded {
+    width: 220px;
+    background-color: rgba(30, 30, 30, 0.95);
+}
+.sidebar .hamburger {
+    background-color: #1e1e1e;
+    border: none;
+    color: #E0E0E0;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+.sidebar .hamburger:hover {
+    background-color: #1b4dd7;
+}
+.sidebar .nav-links {
+    margin-top: 2rem;
+    display: none;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+.sidebar.expanded .nav-links {
+    display: flex;
+}
+.sidebar .nav-links a {
+    color: #E0E0E0;
+    text-decoration: none;
+    margin-bottom: 0rem;
+    font-size: 1rem;
+}
+.main-content {
+    transition: margin-left 0.3s ease;
+    padding: 2rem;
+}
+.hamburger .close-icon {
+    display: none;
+}
+.sidebar.expanded .hamburger-icon {
+    display: none;
+}
+.sidebar.expanded .close-icon {
+    display: inline;
+}
+#mainContent {
+    margin-left: 60px;
+    transition: margin-left 0.3s ease;
+}
+.sidebar.expanded ~ #mainContent {
+    margin-left: 220px; 
+}
+.hover-bg {
+  display: inline-block;
+  position: relative; 
+  text-decoration: none;
+  color: #E0E0E0;
+  padding-left: 1rem; 
+  width: 10rem;
+  transition: background-color 0.3s;
+}
+.hover-bg:hover {
+    background-color: #141414;
+    border-radius: 5px;
+    width: 10rem !important;
+}
+.active-link {
+    position: relative;
+    padding: 1rem;
+}
+.active-link::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3rem;
+  width: 5px;
+  background-color: #1b4dd7;
+  border-radius: 2px;
+}
+.github-space {
+    width: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.plain {
+    color: #E0E0E0;
+    text-decoration: none;
+    font-weight: bold;
+}
+.load-button {
+    background-color: #141414;
+}
