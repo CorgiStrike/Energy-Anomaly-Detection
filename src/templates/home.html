@@ -53,7 +53,7 @@
                                             </ul>
                                         </div>
                                     </h5>
-                                    <p class="card-text small text-light mb-0">
+                                    <p class="card-text small mb-0">
                                         Uploaded: {{ workflow.created_at.strftime('%Y-%m-%d %H:%M') }}
                                     </p>
                                 </div>
@@ -66,7 +66,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <p class="text-light"><b>No workflows saved yet.</b></p>
+                <p><b>No workflows saved yet.</b></p>
             {% endif %}
         </div>
 

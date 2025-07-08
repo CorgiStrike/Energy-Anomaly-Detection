@@ -117,6 +117,7 @@ Then, visit http://localhost:5000 in your browser.
 ## Video Walkthrough
 
 Watch the video walkthrough [here](https://www.youtube.com/watch?v=o7LRJnmUD64)
+
 ## Future Plans
 - OpenAI integration for detailed summaries
 - Google Drive Syncing for automatic Zapier alerts

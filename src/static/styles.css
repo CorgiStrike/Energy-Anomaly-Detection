@@ -6,31 +6,34 @@ body {
     outline: none;
     box-shadow: none;
 }
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #0f0f0f;
+}
+
+/* Containers */
 .container {
     max-width: 1200px;
     position: relative;
 }
-.chart-container {
+
+.chart-container,
+.summary-container,
+.workflow-container {
     background-color: #1e1e1e;
     padding: 1rem;
     border-radius: 10px;
 }
-.summary-container {
-    background-color: #1e1e1e;
-    padding: 1rem;
-    border-radius: 10px;
-    height: 100%;
+
+body.light-mode .chart-container,
+body.light-mode .summary-container,
+body.light-mode .workflow-container {
+    background-color: #f0f0f0;
+    color: #0f0f0f;
 }
-.workflow-container{
-    background-color: #1e1e1e;
-    padding: 1rem;
-    border-radius: 10px;
-    height: 100%;
-}
-.form-section {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
+
+/* File Upload */
 .custom-file-btn {
     background-color: #1e1e1e;
     color: #E0E0E0;
@@ -41,27 +44,39 @@ body {
     cursor: pointer;
     text-decoration: none;
 }
-.custom-file-btn:hover {
+
+.custom-file-btn:hover,
+#toggleAlertsBtn:hover,
+.sidebar .hamburger:hover {
     background-color: #1b4dd7;
 }
+
 input[type="file"] {
     display: none;
 }
-.alert-body {
+
+/* Alerts */
+.alert-body,
+#combinedAlert {
     background-color: #1e1e1e !important;
-    margin-top: 0.5rem;
-    padding: 0.75rem 1rem;
-    border-radius: 5px;
-    font-weight: bold;
+    color: #E0E0E0;
     border: none !important;
     box-shadow: none !important;
 }
+
+body.light-mode .alert-body,
+body.light-mode #combinedAlert {
+    background-color: #f0f0f0 !important;
+    color: #0f0f0f;
+}
+
 .alert-body ul {
     max-height: 200px;
     overflow-y: auto;
     padding-left: 20px;
     margin-bottom: 0;
 }
+
 .alert-info-text {
     color: #00ffff;
 }
@@ -74,25 +89,23 @@ input[type="file"] {
 .alert-success-text {
     color: #50fa7b;
 }
+
+/* Header */
 .header-container {
     display: flex;
-    align-items: center; 
-    gap: 1rem; 
-    margin-bottom: 1.5rem; 
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
+
 .header-logo {
-    width: 60px;       
+    width: 60px;
     height: 60px;
     object-fit: contain;
     border-radius: 5px;
 }
-#combinedAlert {
-    background-color: #1e1e1e !important;
-    color: #E0E0E0;
-    border: none !important;
-    box-shadow: none !important;
-    padding-right: 3rem;
-}
+
+/* Alerts Toggle Button */
 #toggleAlertsBtn {
     background-color: #1e1e1e;
     font-weight: bold;
@@ -101,9 +114,8 @@ input[type="file"] {
     right: 0.5rem;
     z-index: 1050;
 }
-#toggleAlertsBtn:hover {
-    background-color: #1b4dd7;
-}
+
+/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
@@ -116,13 +128,21 @@ input[type="file"] {
     flex-direction: column;
     display: flex;
 }
+
 .sidebar.collapsed {
     width: 60px;
 }
+
 .sidebar.expanded {
     width: 220px;
     background-color: rgba(30, 30, 30, 0.95);
 }
+
+body.light-mode .sidebar.expanded {
+    background-color: rgba(240, 240, 240, 0.95);
+    color: #0f0f0f;
+}
+
 .sidebar .hamburger {
     background-color: #1e1e1e;
     border: none;
@@ -137,31 +157,47 @@ input[type="file"] {
     height: 50px;
     border-radius: 5px;
 }
-.sidebar .hamburger:hover {
-    background-color: #1b4dd7;
-}
+
+/* Navigation Links */
 .sidebar .nav-links {
     margin-top: 2rem;
     display: none;
     flex-direction: column;
     padding-left: 1rem;
 }
+
 .sidebar.expanded .nav-links {
     display: flex;
     flex-direction: column;
     height: 88%;
     justify-content: space-between;
 }
+
 .sidebar .nav-links a {
     color: #E0E0E0;
     text-decoration: none;
-    margin-bottom: 0rem;
     font-size: 1rem;
 }
+
+body.light-mode .sidebar .nav-links a {
+    color: #0f0f0f;
+}
+
+/* Main Content */
 .main-content {
     transition: margin-left 0.3s ease;
     padding: 2rem;
 }
+
+#mainContent {
+    margin-left: 60px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.expanded ~ #mainContent {
+    margin-left: 220px;
+}
+
 .hamburger .close-icon {
     display: none;
 }
@@ -171,73 +207,93 @@ input[type="file"] {
 .sidebar.expanded .close-icon {
     display: inline;
 }
-#mainContent {
-    margin-left: 60px;
-    transition: margin-left 0.3s ease;
-}
-.sidebar.expanded ~ #mainContent {
-    margin-left: 220px; 
-}
+
+/* Links */
 .hover-bg {
-  display: inline-block;
-  position: relative; 
-  text-decoration: none;
-  color: #E0E0E0;
-  padding-left: 1rem; 
-  width: 10rem;
-  transition: background-color 0.3s;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: #E0E0E0;
+    padding-left: 1rem;
+    width: 10rem;
+    transition: background-color 0.3s;
 }
+
+body.light-mode .hover-bg {
+    color: #0f0f0f;
+}
+
 .hover-bg:hover {
     background-color: #141414;
     border-radius: 5px;
     width: 10rem !important;
 }
+
+body.light-mode .hover-bg:hover {
+    background-color: #cecece;
+}
+
 .active-link {
     position: relative;
     padding: 1rem;
 }
+
 .active-link::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 3rem;
-  width: 5px;
-  background-color: #1b4dd7;
-  border-radius: 2px;
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 3rem;
+    width: 5px;
+    background-color: #1b4dd7;
+    border-radius: 2px;
 }
+
 .github-space {
     width: 10rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .plain {
     color: #E0E0E0;
     text-decoration: none;
     font-weight: bold;
 }
+
+body.light-mode .plain {
+    color: #0f0f0f !important;
+}
+
+/* Load Button */
 .load-button {
     background-color: #141414;
+    color: #E0E0E0 !important;
 }
+
+/* Password Toggle */
 .password-toggle {
-  position: relative;
+    position: relative;
 }
+
 .password-toggle input {
     padding-right: 2.5rem;
 }
+
 .password-toggle .toggle-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  bottom: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #141414;
-  font-size: 1.2rem;  
-  user-select: none;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    bottom: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #141414;
+    font-size: 1.2rem;
+    user-select: none;
 }
+
 .password-toggle .toggle-icon:hover {
-  color: #1b4dd7;
+    color: #1b4dd7;
 }

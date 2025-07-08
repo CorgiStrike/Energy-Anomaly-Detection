@@ -12,3 +12,18 @@ toggleButton.addEventListener("click", () => {
         mainContent.style.marginLeft = "60px";
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'light') {
+        document.body.classList.add('light-mode');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+});
